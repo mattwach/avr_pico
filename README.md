@@ -90,3 +90,13 @@ make
 ├── uart
 └── uart_recv_oled
 ```
+
+Also some more complex projects:
+
+```
+battery_discharge_monitor  light_bulb_changer.txt         simple_soil_sensor_nrf2401  voltage_meter_lipo_1s_v2
+coded_door                 motion_detector_rf24_receiver  square_wave_generator       voltage_monitor_for_siggen
+epaper_clock_readme.txt    motion_detector_rf24_sender    truck_backup_beeper
+led_kitchen_lights         servo_arm_draw                 voltage_cutoff_lipo_1s
+led_lamp_readme.txt        simple_soil_sensor             voltage_meter_lipo_1s
+```
