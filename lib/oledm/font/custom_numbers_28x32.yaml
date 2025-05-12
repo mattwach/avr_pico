@@ -1,0 +1,5 @@
+source: custom_numbers_28x32.txt
+rows: 4
+columns: 28
+first_char: 48
+last_char: 57

@@ -1,0 +1,12 @@
+#ifndef GIMBAL_STATE_H
+#define GIMBAL_STATE_H
+
+#define CENTERED 0
+#define TRAVEL_UP_FROM_CENTER 1
+#define TRAVEL_DOWN_FROM_CENTER 2
+#define TRAVEL_DOWN_FROM_ANCHOR 3
+#define TRAVEL_UP_FROM_ANCHOR 4
+
+#endif
+
+

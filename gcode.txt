@@ -1,0 +1,39 @@
+Gcode Dialect:
+
+%: Start/End of program
+N: Line number
+G01: Linear feed mode (the only one supported)
+G54: Change Zero Point (XY only)
+G51: Change scale factor (post zero point)
+F: Set feed rate in mm/sec (not scaled)
+P: Set scale
+X: Set XPOS
+Y: Set YPOS
+Z: Set ZPOS
+
+; starts a comment.  The rest of the line will be ignored
+
+Out of bounds:
+  If an X-Y out of bounds is detected, then:
+    - If the pen is down, it will be raised
+	- All movement command will be ignored until an inbounds movement is received
+	- Once the inbounds movement is received, the pen will be relowered, if it was raised.
+
+Prescan simulation.
+  - The entire file is scanned and simulated before and actual movement occurs
+
+Errors
+  - If any gcode errors are found, the tool is never activated and an error message is produced
+  The error message represents the first found issue.
+
+Example program (triangle)
+
+%
+N01 G54 X0 Y40    ; Set origin to 0, 40
+N02 G01 X0 Y40 Z1 ; Move to top of triangle
+N03 G01 X20 Y0 Z0 ; Draw first segment
+N04 G01 X-20 Y0   ; Draw second segment
+N05 G01 X0 Y40    ; Draw third segment
+%
+
+

@@ -1,0 +1,6 @@
+prescaled: terminus_12x24.txt
+source: terminus6x8.txt
+rows: 1
+columns: 6
+first_char: 33
+last_char: 126

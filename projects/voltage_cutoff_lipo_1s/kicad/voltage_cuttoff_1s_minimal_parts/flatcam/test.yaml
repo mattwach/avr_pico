@@ -1,0 +1,27 @@
+# Choose inches or mm
+units: mm
+
+template_path: /home/mattwach/git/candle_heightmap_adjust/test_template.txt
+output_path: voltage_cutoff_outline.nc
+
+# Size of board, don't make it too small or you will
+# conflict with actual isolation traces!
+
+# Note the origin:
+# width positive, height positive -> South West
+# width positive, height negative -> North West
+# width negative, height positive -> South East
+# width negative, height negative -> North East
+width: 55
+height: -26
+
+# Spindle RPM (Note that 3018 uses 1000 or 10000 and it's not real RPM)
+spindle_speed: 10000
+# how fast to move in the xy plane (units/minute)
+xy_feedrate: 150
+# units per minute z feed when not in material (can be faster)
+z_dwell_feedrate: 200
+# Feedrate for plunge
+z_plunge_feedrate: 50
+# Initial and final height
+z_initial_height: 10

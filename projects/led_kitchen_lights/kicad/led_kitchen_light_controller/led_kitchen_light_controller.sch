@@ -1,0 +1,363 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr USLetter 11000 8500
+encoding utf-8
+Sheet 1 1
+Title "LED Control Module"
+Date "2021-07-04"
+Rev "1"
+Comp "Matt Wachowski"
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L MCU_Microchip_ATtiny:ATtiny85-20PU U2
+U 1 1 60E20151
+P 4800 4000
+F 0 "U2" H 4271 4046 50  0000 R CNN
+F 1 "ATtiny85-20PU" H 4271 3955 50  0000 R CNN
+F 2 "Package_DIP:DIP-8_W7.62mm" H 4800 4000 50  0001 C CIN
+F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/atmel-2586-avr-8-bit-microcontroller-attiny25-attiny45-attiny85_datasheet.pdf" H 4800 4000 50  0001 C CNN
+	1    4800 4000
+	1    0    0    -1  
+$EndComp
+$Comp
+L Transistor_FET:IRLIZ44N Q1
+U 1 1 60E23F5D
+P 6250 3700
+F 0 "Q1" H 6455 3746 50  0000 L CNN
+F 1 "IRLIZ44N" H 6455 3655 50  0000 L CNN
+F 2 "Package_TO_SOT_THT:TO-220F-3_Vertical" H 6500 3625 50  0001 L CIN
+F 3 "http://www.irf.com/product-info/datasheets/data/irliz44n.pdf" H 6250 3700 50  0001 L CNN
+	1    6250 3700
+	1    0    0    -1  
+$EndComp
+$Comp
+L Transistor_FET:IRLIZ44N Q2
+U 1 1 60E250F2
+P 6950 4450
+F 0 "Q2" H 7155 4496 50  0000 L CNN
+F 1 "IRLIZ44N" H 7155 4405 50  0000 L CNN
+F 2 "Package_TO_SOT_THT:TO-220F-3_Vertical" H 7200 4375 50  0001 L CIN
+F 3 "http://www.irf.com/product-info/datasheets/data/irliz44n.pdf" H 6950 4450 50  0001 L CNN
+	1    6950 4450
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R1
+U 1 1 60E25E55
+P 5750 3700
+F 0 "R1" V 5543 3700 50  0000 C CNN
+F 1 "1000" V 5634 3700 50  0000 C CNN
+F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" V 5680 3700 50  0001 C CNN
+F 3 "~" H 5750 3700 50  0001 C CNN
+	1    5750 3700
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R2
+U 1 1 60E27044
+P 6200 4450
+F 0 "R2" V 5993 4450 50  0000 C CNN
+F 1 "1000" V 6084 4450 50  0000 C CNN
+F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" V 6130 4450 50  0001 C CNN
+F 3 "~" H 6200 4450 50  0001 C CNN
+	1    6200 4450
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	5400 3700 5600 3700
+Wire Wire Line
+	5900 3700 6050 3700
+$Comp
+L power:GND #PWR0101
+U 1 1 60E2BA41
+P 4800 4750
+F 0 "#PWR0101" H 4800 4500 50  0001 C CNN
+F 1 "GND" H 4805 4577 50  0000 C CNN
+F 2 "" H 4800 4750 50  0001 C CNN
+F 3 "" H 4800 4750 50  0001 C CNN
+	1    4800 4750
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0102
+U 1 1 60E2D01C
+P 6350 4050
+F 0 "#PWR0102" H 6350 3800 50  0001 C CNN
+F 1 "GND" H 6355 3877 50  0000 C CNN
+F 2 "" H 6350 4050 50  0001 C CNN
+F 3 "" H 6350 4050 50  0001 C CNN
+	1    6350 4050
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0103
+U 1 1 60E31664
+P 7050 4800
+F 0 "#PWR0103" H 7050 4550 50  0001 C CNN
+F 1 "GND" H 7055 4627 50  0000 C CNN
+F 2 "" H 7050 4800 50  0001 C CNN
+F 3 "" H 7050 4800 50  0001 C CNN
+	1    7050 4800
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6350 3900 6350 4050
+Wire Wire Line
+	5400 3800 5750 3800
+Wire Wire Line
+	5750 3800 5750 4450
+Wire Wire Line
+	5750 4450 6050 4450
+Wire Wire Line
+	4800 4600 4800 4750
+$Comp
+L Regulator_Linear:LP2950-5.0_TO92 U1
+U 1 1 60E33794
+P 3950 2850
+F 0 "U1" H 3950 3092 50  0000 C CNN
+F 1 "LP2950-5.0_TO92" H 3950 3001 50  0000 C CNN
+F 2 "Package_TO_SOT_THT:TO-92_Inline" H 3950 3075 50  0001 C CIN
+F 3 "http://www.ti.com/lit/ds/symlink/lp2951-n.pdf" H 3950 2800 50  0001 C CNN
+	1    3950 2850
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:CP1 C2
+U 1 1 60E35914
+P 4450 3150
+F 0 "C2" H 4565 3196 50  0000 L CNN
+F 1 "2.2u" H 4565 3105 50  0000 L CNN
+F 2 "Capacitor_THT:CP_Radial_D5.0mm_P2.50mm" H 4450 3150 50  0001 C CNN
+F 3 "~" H 4450 3150 50  0001 C CNN
+	1    4450 3150
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:CP1 C1
+U 1 1 60E36969
+P 3500 3150
+F 0 "C1" H 3615 3196 50  0000 L CNN
+F 1 "1u" H 3615 3105 50  0000 L CNN
+F 2 "Capacitor_THT:CP_Radial_D5.0mm_P2.50mm" H 3500 3150 50  0001 C CNN
+F 3 "~" H 3500 3150 50  0001 C CNN
+	1    3500 3150
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0104
+U 1 1 60E38C84
+P 3500 3400
+F 0 "#PWR0104" H 3500 3150 50  0001 C CNN
+F 1 "GND" H 3505 3227 50  0000 C CNN
+F 2 "" H 3500 3400 50  0001 C CNN
+F 3 "" H 3500 3400 50  0001 C CNN
+	1    3500 3400
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0105
+U 1 1 60E39CA3
+P 4450 3350
+F 0 "#PWR0105" H 4450 3100 50  0001 C CNN
+F 1 "GND" H 4455 3177 50  0000 C CNN
+F 2 "" H 4450 3350 50  0001 C CNN
+F 3 "" H 4450 3350 50  0001 C CNN
+	1    4450 3350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4450 3300 4450 3350
+Wire Wire Line
+	4250 2850 4450 2850
+Wire Wire Line
+	4450 2850 4450 3000
+Wire Wire Line
+	4450 2850 4800 2850
+Wire Wire Line
+	4800 2850 4800 3400
+Connection ~ 4450 2850
+Wire Wire Line
+	3650 2850 3500 2850
+Wire Wire Line
+	3500 2850 3500 3000
+Wire Wire Line
+	3500 3300 3500 3400
+$Comp
+L Device:C C3
+U 1 1 60E3F6E3
+P 5050 3150
+F 0 "C3" H 5165 3196 50  0000 L CNN
+F 1 "100n" H 5165 3105 50  0000 L CNN
+F 2 "Capacitor_THT:C_Disc_D5.1mm_W3.2mm_P5.00mm" H 5088 3000 50  0001 C CNN
+F 3 "~" H 5050 3150 50  0001 C CNN
+	1    5050 3150
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0106
+U 1 1 60E411C9
+P 5050 3350
+F 0 "#PWR0106" H 5050 3100 50  0001 C CNN
+F 1 "GND" H 5055 3177 50  0000 C CNN
+F 2 "" H 5050 3350 50  0001 C CNN
+F 3 "" H 5050 3350 50  0001 C CNN
+	1    5050 3350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4800 2850 5050 2850
+Wire Wire Line
+	5050 2850 5050 3000
+Connection ~ 4800 2850
+Wire Wire Line
+	5050 3300 5050 3350
+$Comp
+L Connector_Generic:Conn_02x01 J1
+U 1 1 60E462C8
+P 3200 2350
+F 0 "J1" H 3250 2567 50  0000 C CNN
+F 1 "Conn_02x01" H 3250 2476 50  0000 C CNN
+F 2 "Connector_PinSocket_2.54mm:PinSocket_1x02_P2.54mm_Vertical" H 3200 2350 50  0001 C CNN
+F 3 "~" H 3200 2350 50  0001 C CNN
+	1    3200 2350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3500 2350 3500 2850
+Connection ~ 3500 2850
+Text Label 3500 2500 0    50   ~ 0
+12V
+$Comp
+L power:GND #PWR0107
+U 1 1 60E4CBC4
+P 3000 2500
+F 0 "#PWR0107" H 3000 2250 50  0001 C CNN
+F 1 "GND" H 3005 2327 50  0000 C CNN
+F 2 "" H 3000 2500 50  0001 C CNN
+F 3 "" H 3000 2500 50  0001 C CNN
+	1    3000 2500
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3000 2350 3000 2500
+$Comp
+L Connector_Generic:Conn_02x01 J2
+U 1 1 60E4DC12
+P 6050 2350
+F 0 "J2" H 6100 2567 50  0000 C CNN
+F 1 "Conn_02x01" H 6100 2476 50  0000 C CNN
+F 2 "Connector_PinSocket_2.54mm:PinSocket_1x02_P2.54mm_Vertical" H 6050 2350 50  0001 C CNN
+F 3 "~" H 6050 2350 50  0001 C CNN
+	1    6050 2350
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector_Generic:Conn_02x01 J3
+U 1 1 60E4E9EE
+P 6050 2600
+F 0 "J3" H 6100 2817 50  0000 C CNN
+F 1 "Conn_02x01" H 6100 2726 50  0000 C CNN
+F 2 "Connector_PinSocket_2.54mm:PinSocket_1x02_P2.54mm_Vertical" H 6050 2600 50  0001 C CNN
+F 3 "~" H 6050 2600 50  0001 C CNN
+	1    6050 2600
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector_Generic:Conn_02x01 J5
+U 1 1 60E4FD5E
+P 6750 3100
+F 0 "J5" H 6800 3317 50  0000 C CNN
+F 1 "Conn_02x01" H 6800 3226 50  0000 C CNN
+F 2 "Connector_PinSocket_2.54mm:PinSocket_1x02_P2.54mm_Vertical" H 6750 3100 50  0001 C CNN
+F 3 "~" H 6750 3100 50  0001 C CNN
+	1    6750 3100
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector_Generic:Conn_02x01 J4
+U 1 1 60E50D4E
+P 6750 2850
+F 0 "J4" H 6800 3067 50  0000 C CNN
+F 1 "Conn_02x01" H 6800 2976 50  0000 C CNN
+F 2 "Connector_PinSocket_2.54mm:PinSocket_1x02_P2.54mm_Vertical" H 6750 2850 50  0001 C CNN
+F 3 "~" H 6750 2850 50  0001 C CNN
+	1    6750 2850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7050 4650 7050 4800
+Wire Wire Line
+	6350 4450 6750 4450
+Wire Wire Line
+	6550 3100 6550 2850
+Wire Wire Line
+	3500 2350 5850 2350
+Connection ~ 3500 2350
+Wire Wire Line
+	5850 2350 5850 2600
+Connection ~ 5850 2350
+Wire Wire Line
+	5850 2600 5850 2850
+Wire Wire Line
+	5850 2850 6550 2850
+Connection ~ 5850 2600
+Connection ~ 6550 2850
+Wire Wire Line
+	6350 2350 6350 2600
+Wire Wire Line
+	6350 2600 6350 3500
+Connection ~ 6350 2600
+Wire Wire Line
+	7050 2850 7050 3100
+Wire Wire Line
+	7050 3100 7050 4250
+Connection ~ 7050 3100
+$Comp
+L power:GND #PWR0108
+U 1 1 60E76918
+P 3950 3300
+F 0 "#PWR0108" H 3950 3050 50  0001 C CNN
+F 1 "GND" H 3955 3127 50  0000 C CNN
+F 2 "" H 3950 3300 50  0001 C CNN
+F 3 "" H 3950 3300 50  0001 C CNN
+	1    3950 3300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3950 3150 3950 3300
+$Comp
+L Switch:SW_Push SW1
+U 1 1 60E78C0F
+P 5700 4850
+F 0 "SW1" H 5700 5135 50  0000 C CNN
+F 1 "SW_Push" H 5700 5044 50  0000 C CNN
+F 2 "Button_Switch_THT:SW_PUSH-12mm" H 5700 5050 50  0001 C CNN
+F 3 "~" H 5700 5050 50  0001 C CNN
+	1    5700 4850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5400 3900 5500 3900
+Wire Wire Line
+	5500 3900 5500 4850
+$Comp
+L power:GND #PWR0109
+U 1 1 60E805CE
+P 6100 5100
+F 0 "#PWR0109" H 6100 4850 50  0001 C CNN
+F 1 "GND" H 6105 4927 50  0000 C CNN
+F 2 "" H 6100 5100 50  0001 C CNN
+F 3 "" H 6100 5100 50  0001 C CNN
+	1    6100 5100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5900 4850 6100 4850
+Wire Wire Line
+	6100 4850 6100 5100
+$EndSCHEMATC

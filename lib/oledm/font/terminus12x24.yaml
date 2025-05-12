@@ -1,0 +1,5 @@
+source: terminus16x32.txt
+rows: 3
+columns: 12
+first_char: 33
+last_char: 126

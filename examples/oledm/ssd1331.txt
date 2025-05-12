@@ -1,0 +1,1 @@
+Use SSD1780, it's the same.

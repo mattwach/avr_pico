@@ -1,0 +1,60 @@
+#ifndef OLEDM_SSD1780_COMMANDS_H
+#define OLEDM_SSD1780_COMMANDS_H
+
+enum ESsd1780Commands {
+    SSD1780_SET_COLUMN_STARTEND      = 0x15,
+    SSD1780_SET_ROW_STARTEND         = 0x75,
+
+    SSD1780_SET_CONTRAST_A           = 0x81,
+    SSD1780_SET_CONTRAST_B           = 0x82,
+    SSD1780_SET_CONTRAST_C           = 0x83,
+
+    SSD1780_MASTER_CURRENT           = 0x87,
+
+    SSD1780_PRECHARGE_A              = 0x8A,
+    SSD1780_PRECHARGE_B              = 0x8B,
+    SSD1780_PRECHARGE_C              = 0x8C,
+
+    SSD1780_REMAP_AND_COLOR_DEPTH    = 0xA0,
+
+    SSD1780_SET_START_LINE           = 0xA1,
+    SSD1780_SET_DISPLAY_OFFSET       = 0xA2,
+
+    SSD1780_SET_DISPLAY_MODE         = 0xA4,
+
+    SSD1780_SET_MULTIPLEX_RATIO      = 0xA8,
+
+    SSD1780_DIM_MODE_SETTING         = 0xAB,
+
+    SSD1780_SET_MASTER_CONFIGURATION = 0xAD,
+
+    SSD1780_DISPLAY_DIM              = 0xAC,
+    SSD1780_DISPLAY_OFF              = 0xAE,
+    SSD1780_DISPLAY_ON               = 0xAF,
+
+    SSD1780_POWER_SAVE_MODE          = 0xB0,
+
+    SSD1780_PHASE_1_2_PERIOD         = 0xB1,
+
+    SSD1780_DISPLAY_CLOCK_DIVIDER    = 0xB3,
+
+    SSD1780_SET_GRAY_SCALE_TABLE     = 0xB8,
+    SSD1780_ENABLE_GRAY_SCALE_TABLE  = 0xB9,
+
+    SSD1780_SET_PRECHARGE_LEVEL      = 0xBB,
+
+    SSD1780_SET_COM_DESELECT_VOLTS   = 0xBE,
+    SSD1780_SET_COMMAND_LOCK         = 0xFD,
+
+    SSD1780_DRAW_LINE                = 0x21,
+    SSD1780_DRAW_RECTANGLE           = 0x22,
+    SSD1780_COPY                     = 0x23,
+    SSD1780_DIM_WINDOW               = 0x24,
+    SSD1780_CLEAR_WINDOW             = 0x25,
+    SSD1780_FILL_ENABLE              = 0x26,
+    SSD1780_CONTINUOUS_SCROLL        = 0x27,
+    SSD1780_DEACTIVATE_SCROLL        = 0x2E,
+    SSD1780_ACTIVATE_SCROLL          = 0x2F,
+};
+
+#endif

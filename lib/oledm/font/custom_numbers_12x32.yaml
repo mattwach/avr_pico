@@ -1,0 +1,5 @@
+source: custom_numbers_12x32.txt
+rows: 4
+columns: 12
+first_char: 48
+last_char: 57

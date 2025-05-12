@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 296.99999"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
+   sodipodi:docname="unit_sticker.svg">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.44433559"
+     inkscape:cx="284.90629"
+     inkscape:cy="886.71523"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     units="mm"
+     width="55in"
+     inkscape:window-width="2560"
+     inkscape:window-height="1502"
+     inkscape:window-x="0"
+     inkscape:window-y="27"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-2e-5)">
+    <g
+       id="g4606"
+       transform="translate(5.2102605,-266.61647)">
+      <text
+         id="text4520"
+         y="276.94431"
+         x="2.5599623"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444447px;line-height:125%;font-family:'Ubuntu Condensed';-inkscape-font-specification:'Ubuntu Condensed, ';text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           style="font-size:4.93888903px;text-align:start;text-anchor:start;stroke-width:0.26458332px"
+           y="276.94431"
+           x="2.5599623"
+           id="tspan4518"
+           sodipodi:role="line">1S LIPO Low Voltage Cutoff</tspan></text>
+      <text
+         id="text4534"
+         y="280.69934"
+         x="2.7539949"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.82222223px;line-height:89.99999762%;font-family:'Ubuntu Condensed';-inkscape-font-specification:'Ubuntu Condensed, ';text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           id="tspan4540"
+           style="line-height:89.99999762%;text-align:start;text-anchor:start;stroke-width:0.26458332px"
+           y="280.69934"
+           x="2.7539949"
+           sodipodi:role="line">Calibration:</tspan></text>
+      <text
+         transform="scale(1.0296171,0.97123486)"
+         id="text4546"
+         y="291.92422"
+         x="4.1928921"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.70726728px;line-height:89.99999762%;font-family:'Ubuntu Condensed';-inkscape-font-specification:'Ubuntu Condensed, ';text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.25380629px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.25380629px"
+           y="291.92422"
+           x="4.1928921"
+           id="tspan4544"
+           sodipodi:role="line">1. Short Jumper</tspan><tspan
+           id="tspan4550"
+           style="stroke-width:0.25380629px"
+           y="294.36078"
+           x="4.1928921"
+           sodipodi:role="line">2. Connect Simple Load (LED)</tspan><tspan
+           id="tspan4552"
+           style="stroke-width:0.25380629px"
+           y="296.7973"
+           x="4.1928921"
+           sodipodi:role="line">3. Apply Desired Cutoff Power (i.e. 3.5V)</tspan><tspan
+           id="tspan4554"
+           style="stroke-width:0.25380629px"
+           y="299.23386"
+           x="4.1928921"
+           sodipodi:role="line">4. Turn pot until light is on the edge of turning</tspan><tspan
+           id="tspan4556"
+           style="stroke-width:0.25380629px"
+           y="301.67038"
+           x="4.1928921"
+           sodipodi:role="line">     off.</tspan><tspan
+           id="tspan4558"
+           style="stroke-width:0.25380629px"
+           y="304.10693"
+           x="4.1928921"
+           sodipodi:role="line">5. Remove Jumper.</tspan><tspan
+           id="tspan4548"
+           style="stroke-width:0.25380629px"
+           y="306.54346"
+           x="4.1928921"
+           sodipodi:role="line"> </tspan></text>
+      <text
+         id="text4562"
+         y="280.88544"
+         x="26.088516"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:2.82222223px;line-height:89.99999762%;font-family:'Ubuntu Condensed';-inkscape-font-specification:'Ubuntu Condensed, ';text-align:start;letter-spacing:0px;word-spacing:0px;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.26458332px"
+           y="280.88544"
+           x="26.088516"
+           id="tspan4560"
+           sodipodi:role="line">2-5V (unregulated), 0-10A</tspan></text>
+      <rect
+         y="277.98257"
+         x="25.418627"
+         height="2.6795628"
+         width="4.9869633"
+         id="rect4564"
+         style="opacity:1;fill:none;fill-opacity:1;stroke:none;stroke-width:0.1;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <rect
+         y="277.98257"
+         x="25.418627"
+         height="4.093771"
+         width="28.172625"
+         id="rect4566"
+         style="opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.2;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <rect
+         y="272.25024"
+         x="0.18503492"
+         height="24.564747"
+         width="54.635395"
+         id="rect4587"
+         style="opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.19790836;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+    </g>
+  </g>
+</svg>

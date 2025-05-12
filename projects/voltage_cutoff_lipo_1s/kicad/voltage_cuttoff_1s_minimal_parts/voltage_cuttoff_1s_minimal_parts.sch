@@ -1,0 +1,354 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr USLetter 11000 8500
+encoding utf-8
+Sheet 1 1
+Title "Lipo 1S Voltage Cutoff - Minimal Parts"
+Date "2022-01-03"
+Rev "1"
+Comp "Matt Wachowski"
+Comment1 "Should have around 0.1 uA of current draw when \"off\""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L Transistor_FET:IRLIZ44N Q1
+U 1 1 61D361E7
+P 6950 3800
+F 0 "Q1" H 7155 3846 50  0000 L CNN
+F 1 "IRLIZ44N" H 7155 3755 50  0000 L CNN
+F 2 "Package_TO_SOT_THT:TO-220F-3_Vertical" H 7200 3725 50  0001 L CIN
+F 3 "http://www.irf.com/product-info/datasheets/data/irliz44n.pdf" H 6950 3800 50  0001 L CNN
+	1    6950 3800
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R4
+U 1 1 61D382DD
+P 6050 3950
+F 0 "R4" H 6120 3996 50  0000 L CNN
+F 1 "47k" H 6120 3905 50  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder" V 5980 3950 50  0001 C CNN
+F 3 "~" H 6050 3950 50  0001 C CNN
+	1    6050 3950
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R5
+U 1 1 61D38A22
+P 6450 3800
+F 0 "R5" V 6243 3800 50  0000 C CNN
+F 1 "1k" V 6334 3800 50  0000 C CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder" V 6380 3800 50  0001 C CNN
+F 3 "~" H 6450 3800 50  0001 C CNN
+	1    6450 3800
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R_POT RV1
+U 1 1 61D3A91A
+P 5250 4650
+F 0 "RV1" H 5180 4604 50  0000 R CNN
+F 1 "10k" H 5180 4695 50  0000 R CNN
+F 2 "Matts Library:TRIM_3362P-1-103" H 5250 4650 50  0001 C CNN
+F 3 "~" H 5250 4650 50  0001 C CNN
+	1    5250 4650
+	1    0    0    1   
+$EndComp
+$Comp
+L Device:R R1
+U 1 1 61D3E8FC
+P 5250 4250
+F 0 "R1" H 5320 4296 50  0000 L CNN
+F 1 "22k" H 5320 4205 50  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder" V 5180 4250 50  0001 C CNN
+F 3 "~" H 5250 4250 50  0001 C CNN
+	1    5250 4250
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R2
+U 1 1 61D3ECA1
+P 5250 5050
+F 0 "R2" H 5320 5096 50  0000 L CNN
+F 1 "4.7k" H 5320 5005 50  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.20x1.40mm_HandSolder" V 5180 5050 50  0001 C CNN
+F 3 "~" H 5250 5050 50  0001 C CNN
+	1    5250 5050
+	1    0    0    -1  
+$EndComp
+NoConn ~ 4950 4200
+Wire Wire Line
+	4950 4100 5250 4100
+Wire Wire Line
+	5250 4400 5250 4500
+Wire Wire Line
+	5250 4800 5250 4900
+$Comp
+L power:GND #PWR05
+U 1 1 61D464C1
+P 5250 5200
+F 0 "#PWR05" H 5250 4950 50  0001 C CNN
+F 1 "GND" H 5255 5027 50  0000 C CNN
+F 2 "" H 5250 5200 50  0001 C CNN
+F 3 "" H 5250 5200 50  0001 C CNN
+	1    5250 5200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5550 4650 5400 4650
+Wire Wire Line
+	4950 4000 5550 4000
+Wire Wire Line
+	5550 4000 5550 4650
+$Comp
+L Device:C C2
+U 1 1 61D493B9
+P 5800 4800
+F 0 "C2" H 5915 4846 50  0000 L CNN
+F 1 "1u" H 5915 4755 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder" H 5838 4650 50  0001 C CNN
+F 3 "~" H 5800 4800 50  0001 C CNN
+	1    5800 4800
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR07
+U 1 1 61D49AA4
+P 5800 4950
+F 0 "#PWR07" H 5800 4700 50  0001 C CNN
+F 1 "GND" H 5805 4777 50  0000 C CNN
+F 2 "" H 5800 4950 50  0001 C CNN
+F 3 "" H 5800 4950 50  0001 C CNN
+	1    5800 4950
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5550 4650 5800 4650
+Connection ~ 5550 4650
+$Comp
+L power:GND #PWR08
+U 1 1 61D4DD52
+P 6050 4100
+F 0 "#PWR08" H 6050 3850 50  0001 C CNN
+F 1 "GND" H 6055 3927 50  0000 C CNN
+F 2 "" H 6050 4100 50  0001 C CNN
+F 3 "" H 6050 4100 50  0001 C CNN
+	1    6050 4100
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR010
+U 1 1 61D4E147
+P 7050 4000
+F 0 "#PWR010" H 7050 3750 50  0001 C CNN
+F 1 "GND" H 7055 3827 50  0000 C CNN
+F 2 "" H 7050 4000 50  0001 C CNN
+F 3 "" H 7050 4000 50  0001 C CNN
+	1    7050 4000
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4950 3800 6050 3800
+Wire Wire Line
+	6050 3800 6300 3800
+Connection ~ 6050 3800
+Wire Wire Line
+	6600 3800 6750 3800
+$Comp
+L Connector:Conn_01x02_Male J1
+U 1 1 61D4F301
+P 3450 2800
+F 0 "J1" H 3558 2981 50  0000 C CNN
+F 1 "Input" H 3558 2890 50  0000 C CNN
+F 2 "Matts Library:SMD_Pad_1x02_4mm" H 3450 2800 50  0001 C CNN
+F 3 "~" H 3450 2800 50  0001 C CNN
+	1    3450 2800
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:Conn_01x02_Male J3
+U 1 1 61D50F6D
+P 7250 2900
+F 0 "J3" H 7222 2782 50  0000 R CNN
+F 1 "Output" H 7222 2873 50  0000 R CNN
+F 2 "Matts Library:SMD_Pad_1x02_4mm" H 7250 2900 50  0001 C CNN
+F 3 "~" H 7250 2900 50  0001 C CNN
+	1    7250 2900
+	-1   0    0    1   
+$EndComp
+$Comp
+L Connector:Conn_01x02_Male J2
+U 1 1 61D53492
+P 5150 3050
+F 0 "J2" V 5212 3094 50  0000 L CNN
+F 1 "Calibrate Jumper" V 5303 3094 50  0000 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x02_P2.54mm_Vertical" H 5150 3050 50  0001 C CNN
+F 3 "~" H 5150 3050 50  0001 C CNN
+	1    5150 3050
+	0    1    1    0   
+$EndComp
+$Comp
+L power:GND #PWR02
+U 1 1 61D54DBF
+P 3650 2900
+F 0 "#PWR02" H 3650 2650 50  0001 C CNN
+F 1 "GND" H 3655 2727 50  0000 C CNN
+F 2 "" H 3650 2900 50  0001 C CNN
+F 3 "" H 3650 2900 50  0001 C CNN
+	1    3650 2900
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:Fuse F1
+U 1 1 61D56D87
+P 7050 3100
+F 0 "F1" H 6990 3054 50  0000 R CNN
+F 1 "Fuse" H 6990 3145 50  0000 R CNN
+F 2 "Matts Library:5x20_Fuse_Holder_Two_Part_THT" V 6980 3100 50  0001 C CNN
+F 3 "~" H 7050 3100 50  0001 C CNN
+	1    7050 3100
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	7050 2900 7050 2950
+Wire Wire Line
+	7050 3250 7050 3600
+Wire Wire Line
+	3650 2800 4050 2800
+Wire Wire Line
+	4350 2800 4350 3400
+Connection ~ 4350 2800
+Wire Wire Line
+	4350 2800 4550 2800
+Wire Wire Line
+	4950 3700 5050 3700
+$Comp
+L Device:C C1
+U 1 1 61D7C2CA
+P 4050 3050
+F 0 "C1" H 4165 3096 50  0000 L CNN
+F 1 "1u" H 4165 3005 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.18x1.45mm_HandSolder" H 4088 2900 50  0001 C CNN
+F 3 "~" H 4050 3050 50  0001 C CNN
+	1    4050 3050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4050 2900 4050 2800
+Connection ~ 4050 2800
+Wire Wire Line
+	4050 2800 4350 2800
+$Comp
+L power:GND #PWR03
+U 1 1 61D7D9B7
+P 4050 3200
+F 0 "#PWR03" H 4050 2950 50  0001 C CNN
+F 1 "GND" H 4055 3027 50  0000 C CNN
+F 2 "" H 4050 3200 50  0001 C CNN
+F 3 "" H 4050 3200 50  0001 C CNN
+	1    4050 3200
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:CP C3
+U 1 1 61D7E427
+P 6550 3050
+F 0 "C3" H 6668 3096 50  0000 L CNN
+F 1 "220u" H 6668 3005 50  0000 L CNN
+F 2 "Capacitor_THT:CP_Radial_D6.3mm_P2.50mm" H 6588 2900 50  0001 C CNN
+F 3 "~" H 6550 3050 50  0001 C CNN
+	1    6550 3050
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR09
+U 1 1 61D80B8D
+P 6550 3200
+F 0 "#PWR09" H 6550 2950 50  0001 C CNN
+F 1 "GND" H 6555 3027 50  0000 C CNN
+F 2 "" H 6550 3200 50  0001 C CNN
+F 3 "" H 6550 3200 50  0001 C CNN
+	1    6550 3200
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6550 2900 6550 2800
+Connection ~ 6550 2800
+Wire Wire Line
+	6550 2800 7050 2800
+$Comp
+L power:PWR_FLAG #FLG02
+U 1 1 61D8BB4B
+P 4550 2800
+F 0 "#FLG02" H 4550 2875 50  0001 C CNN
+F 1 "PWR_FLAG" H 4550 2973 50  0000 C CNN
+F 2 "" H 4550 2800 50  0001 C CNN
+F 3 "~" H 4550 2800 50  0001 C CNN
+	1    4550 2800
+	1    0    0    -1  
+$EndComp
+Connection ~ 4550 2800
+$Comp
+L power:PWR_FLAG #FLG01
+U 1 1 61D8BF92
+P 3050 3500
+F 0 "#FLG01" H 3050 3575 50  0001 C CNN
+F 1 "PWR_FLAG" H 3050 3673 50  0000 C CNN
+F 2 "" H 3050 3500 50  0001 C CNN
+F 3 "~" H 3050 3500 50  0001 C CNN
+	1    3050 3500
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR04
+U 1 1 61D8C46F
+P 4350 4600
+F 0 "#PWR04" H 4350 4350 50  0001 C CNN
+F 1 "GND" H 4355 4427 50  0000 C CNN
+F 2 "" H 4350 4600 50  0001 C CNN
+F 3 "" H 4350 4600 50  0001 C CNN
+	1    4350 4600
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR01
+U 1 1 61D8C8CE
+P 3050 3500
+F 0 "#PWR01" H 3050 3250 50  0001 C CNN
+F 1 "GND" H 3055 3327 50  0000 C CNN
+F 2 "" H 3050 3500 50  0001 C CNN
+F 3 "" H 3050 3500 50  0001 C CNN
+	1    3050 3500
+	1    0    0    -1  
+$EndComp
+NoConn ~ 4950 3900
+Wire Wire Line
+	4550 2800 6550 2800
+Wire Wire Line
+	5050 3250 5050 3700
+$Comp
+L power:GND #PWR0101
+U 1 1 61D98B40
+P 5150 3250
+F 0 "#PWR0101" H 5150 3000 50  0001 C CNN
+F 1 "GND" H 5155 3077 50  0000 C CNN
+F 2 "" H 5150 3250 50  0001 C CNN
+F 3 "" H 5150 3250 50  0001 C CNN
+	1    5150 3250
+	1    0    0    -1  
+$EndComp
+$Comp
+L MCU_Microchip_ATtiny:ATtiny85-20PU U1
+U 1 1 61D9AE26
+P 4350 4000
+F 0 "U1" H 3821 4046 50  0000 R CNN
+F 1 "ATtiny85-20PU" H 3821 3955 50  0000 R CNN
+F 2 "Package_DIP:DIP-8_W7.62mm" H 4350 4000 50  0001 C CIN
+F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/atmel-2586-avr-8-bit-microcontroller-attiny25-attiny45-attiny85_datasheet.pdf" H 4350 4000 50  0001 C CNN
+	1    4350 4000
+	1    0    0    -1  
+$EndComp
+$EndSCHEMATC
