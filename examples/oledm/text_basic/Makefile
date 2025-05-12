@@ -1,7 +1,7 @@
 # define to attiny85 or atmega328p
-MCU?=atmega328p
-IFACE?=spi
-OLED?=sh1107
+MCU?=attiny85
+IFACE?=i2c
+OLED?=ssd1306
 
 ROOT=../../..
 include $(ROOT)/vars.mak
