@@ -1,5 +1,5 @@
 # define to attiny85 or atmega328p
-MCU?=attiny84
+MCU?=attiny85
 IFACE?=i2c
 OLED?=ssd1306
 F_CPU=1000000

@@ -28,12 +28,12 @@ int main(void) {
   OLEDM_INIT(&display);
   oledm_start(&display);
   oledm_clear(&display, 0x00);
+  text_init(&text, terminus8x16, &display);
 
   uint8_t col = 0;
   uint8_t dir = 1;
   uint8_t row = 0;
   while (1) {
-    text_init(&text, terminus8x16, &display);
     text.row = row;
     text.column = col;
     text_str(&text, " Hello World! ");

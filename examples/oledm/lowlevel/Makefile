@@ -1,7 +1,10 @@
 # define to attiny85 or atmega328p
-MCU?=atmega328p
-IFACE?=spi
-OLED?=sh1107
+#MCU?=atmega328p
+MCU?=attiny85
+#IFACE?=spi
+IFACE?=i2c
+#OLED?=sh1107
+OLED?=ssd1306
 
 ROOT=../../..
 
