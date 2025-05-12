@@ -2,6 +2,8 @@
 My AVR libraries I've created over the years.  Many of them have been augmented
 to be usable with Pi Pico as well.
 
+Everything is `C` based and no external frameworks are needed.
+
 You'll need to install `avr-gcc` yourself before using.  Some optional tooling
 also needs Python3. Only tested on Linux but it should also work in other OSes
 with approprate tweaking.
