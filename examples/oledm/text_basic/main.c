@@ -29,5 +29,5 @@ int main(void) {
   oledm_clear(&display, 0x00);
   text_init(&text, terminus6x8, &display);
   text.row = 2;
-  text_str(&text, "Hello Washington!");
+  text_str(&text, "Hello World!");
 }
