@@ -28,23 +28,6 @@ int main(void) {
   OLEDM_INIT(&display);
   oledm_start(&display);
   oledm_clear(&display, 0x00);
-
-  uint8_t col = 0;
-  uint8_t dir = 1;
-  uint8_t row = 0;
-  while (1) {
-    text_init(&text, hello_world_font, &display);
-    text.row = row;
-    text.column = col;
-    text_str(&text, " Hello World! ");
-
-    col += dir;
-    if (col == 0 || col == 127) {
-      dir = -dir;
-      if (col == 127) {
-        row = (row + 1) & 0x07;
-      }
-    }
-    _delay_ms(16);
-  }
+  text_init(&text, hello_world_font, &display);
+  text_str(&text, "Hello World!");
 }

@@ -39,7 +39,7 @@ def process_ttf_section(
 
   def make_char(c):
     if width == 0:
-      cwidth = int(fnt.getsize(c)[0] + 1) + x_pad * 2
+      cwidth = int(fnt.getbbox(c)[2] + 1) + x_pad * 2
     else:
       cwidth = width
     img = Image.new("1", (cwidth, height))
