@@ -37,7 +37,7 @@
 struct OLEDM display;
 struct Text text;
 
-void main(void) {
+int main(void) {
   // Set everything as an input to start
   DDRB = 0x00;
   // Set internal pullups
