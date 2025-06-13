@@ -12,13 +12,13 @@
 //         +--------+
 //
 
+#include "large_font.h"
 #include <adc/adc.h>
 #include <avr/io.h>
 #include <lowpower/lowpower.h>
 #include <oledm/oledm.h>
 #include <oledm/text.h>
 #include <oledm/ssd1306_init.h>
-#include <oledm/font/terminus16x32_numbers.h>
 #include <util/delay.h>
 
 #define SDA_PIN PB0
@@ -59,19 +59,9 @@ int main(void) {
 
   // Initialize the OLED and display the voltage reading.
   ssd1306_64x32_a_init(&display);
-  text_init(&text, terminus16x32_numbers, &display);
+  text_init(&text, large_font, &display);
   oledm_start(&display);
   oledm_clear(&display, 0x00);
-
-  /*
-  // Raw debug
-  text.column = 0;
-  text_char(&text, '0' + (char)(raw_adc_value / 1000));
-  text_char(&text, '0' + (char)(raw_adc_value / 100 % 10));
-  text_char(&text, '0' + (char)(raw_adc_value / 10 % 10));
-  text_char(&text, '0' + (char)(raw_adc_value % 10));
-  _delay_ms(1000);
-  */
 
   const uint16_t volts = (uint16_t)(VOLTAGE_REF_NUMERATOR / raw_adc_value);
 
