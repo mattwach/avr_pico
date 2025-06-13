@@ -6,10 +6,12 @@
 //
 //         +--------+
 // N/C    -|        |- VDD
-// N/C    -| Tiny85 |- SCL for display
+// CAL    -| Tiny85 |- SCL for display
 // N/C    -|        |- N/C 
 // VSS    -|        |- SDA for display
 //         +--------+
+//
+// Pull Cal pin (PB3) low to calibrate the internal reference.
 //
 
 #include "large_font.h"
@@ -23,6 +25,7 @@
 
 #define SDA_PIN PB0
 #define SCL_PIN PB2
+#define CAL_PIN PB3
 
 // The raw value represents 1.1 volts.  To figure out the real voltage
 // we need to take 110 (decivolts) * 1023 / raw_value
@@ -37,31 +40,32 @@
 struct OLEDM display;
 struct Text text;
 
-int main(void) {
+static void init() {
+  // settle time
+  lowpower_powerDown(SLEEP_60MS, ADC_OFF, BOD_OFF);
+
   // Set everything as an input to start
   DDRB = 0x00;
-  // Set internal pullups
-  PORTB = (1 << PB1) | (1 << PB3) | (1 << PB4) | (1 << SDA_PIN) | (1 << SCL_PIN);
-
-  // Now wait for the capacitor that is buffering the battery and the
-  // one that is stabilizing the ADC reading to charge
-  lowpower_powerDown(SLEEP_250MS, ADC_OFF, BOD_OFF);
-
-  // Do a one-shot ADC reading
-  const uint16_t raw_adc_value = adc_quiet_read16_internal_ref(
-      ADC_PRESCALER_128);
-
-  // Now that we have the reading, we can power everything up to display it
-
-  // Set SDA, SCL as low outputs
-  PORTB &= ~((1 << SDA_PIN) | (1 << SCL_PIN));
+  // Set internal pullups for input pins
+  PORTB = (1 << PB1) | (1 << PB3) | (1 << PB4);
+  // Set SDA and SCL as outputs
   DDRB |= (1 << SDA_PIN) | (1 << SCL_PIN);
 
-  // Initialize the OLED and display the voltage reading.
+  // Initialize the OLED
   ssd1306_64x32_a_init(&display);
   text_init(&text, large_font, &display);
   oledm_start(&display);
   oledm_clear(&display, 0x00);
+}
+
+static void loop() {
+  lowpower_powerDown(SLEEP_15MS, ADC_OFF, BOD_OFF);
+
+  // Read ADC
+  const uint16_t raw_adc_value = adc_quiet_read16_internal_ref(
+      ADC_PRESCALER_128);
+
+  // Now that we have the reading, we can power everything up to display it
 
   const uint16_t volts = (uint16_t)(VOLTAGE_REF_NUMERATOR / raw_adc_value);
 
@@ -70,9 +74,15 @@ int main(void) {
   text_char(&text, '.');
   text_char(&text, '0' + (char)((volts / 10) % 10));
   text_char(&text, '0' + (char)(volts % 10));
+  text_char(&text, 'v');
+}
 
-  // just sleep
+// Program entry point
+int main(void) {
+  init();
+
   while (1) {
-    lowpower_powerDown(SLEEP_FOREVER, ADC_OFF, BOD_OFF);
+    loop();
   }
 }
+
