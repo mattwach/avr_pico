@@ -149,7 +149,7 @@ static void calibrate() {
         write_eeprom();
         oledm_clear(&display, 0x00);
       }
-      print_adc_values_to_oled(adc_3v, adc_4v);
+      print_adc_values_to_oled(adc_3v, adc);
     } else {
       print_cal_values_to_oled(adc);
     }
