@@ -9,7 +9,8 @@ rows: 2
 sections:
   - type: ttf
     path: LiberationMono-Regular.ttf
-    font_size: 16
+    font_size: 14
+    x_pad: 0
     y_offset: -1
     chars: "0123456789Vabcdgm Set3v.,thenpullCALtoGNDsavedtoeeprom"
   - type: ttf

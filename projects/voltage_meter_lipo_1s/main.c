@@ -24,7 +24,6 @@
 #include "calibration_font.h"
 #include "large_font.h"
 
-#include <lowpower/lowpower.h>
 #include <oledm/oledm.h>
 #include <oledm/text.h>
 #include <oledm/ssd1306_init.h>
@@ -102,6 +101,7 @@ static void write_eeprom() {
 static void show_calibration_line(const char* label, uint32_t val) {
   text_str(&text, label);
   text_char(&text, '|');
+  text_char(&text, ' ');
   text_char(&text, '0' + (char)((val / 1000) % 10));
   text_char(&text, '0' + (char)((val / 100) % 10));
   text_char(&text, '0' + (char)((val / 10) % 10));
@@ -129,12 +129,12 @@ static void print_cal_values_to_oled(uint32_t adc) {
 
 // Calibrates Vgs and Vb
 static void calibrate() {
+  oledm_clear(&display, 0x00);
   uint32_t adc_3v = read_adc();
   uint32_t adc_4v = 0;
   uint8_t grounded = 1;
-  oledm_clear(&display, 0x00);
   while (1) {
-    lowpower_powerDown(SLEEP_15MS, ADC_OFF, BOD_OFF);
+    _delay_ms(15);
     const uint32_t adc = read_adc();
 
     if (adc_4v == 0) {
@@ -159,7 +159,7 @@ static void calibrate() {
 // One-time initilization that occurs when the chip is given power
 static void init() {
   // settle time
-  lowpower_powerDown(SLEEP_60MS, ADC_OFF, BOD_OFF);
+  _delay_ms(50);
 
   // Set everything as an input to start
   DDRB = 0x00;
@@ -169,7 +169,7 @@ static void init() {
   DDRB |= (1 << SDA_PIN) | (1 << SCL_PIN);
 
   // Initialize the OLED
-  ssd1306_64x32_a_init(&display);
+  oledm_basic_init(&display);
   text_init(&text, large_font, &display);
   oledm_start(&display);
   oledm_clear(&display, 0x00);
@@ -194,17 +194,17 @@ static void print_voltage_to_oled(uint32_t mv) {
 
 // Outputs that the voltage is not known
 static void calibrate_message() {
-  text.row = 2;
+  text.row = 1;
   text.column = 0;
   text_str(&text,
       "Set 3v, then\n"
-      "pull CAL\n"
-      "to GND");
+      "pull CAL to\n"
+      "GND.\n");
 }
 
 // Called repeatedly by main
 static void loop() {
-  lowpower_powerDown(SLEEP_15MS, ADC_OFF, BOD_OFF);
+  _delay_ms(15);
   if (cal_is_grounded()) {
     calibrate();
   }
