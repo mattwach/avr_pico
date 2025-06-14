@@ -49,7 +49,7 @@ struct SavedState {
   uint32_t eyecatcher;
 };
 
-#define EYECATCHER 0xA8500ADC
+#define EYECATCHER 0xA85ADC00
 
 // Global structures
 
@@ -57,6 +57,11 @@ struct OLEDM display;
 struct Text text;
 struct SavedState EEMEM saved_state_eeprom;  // EEPROM address
 struct SavedState saved_state;
+
+#define ADC_SAMPLES 8
+uint16_t adc_sample[ADC_SAMPLES];
+uint8_t adc_sample_index;
+uint32_t adc_sample_sum;
 
 // Calculates a voltage Drop (Vd) in mv, given an ADC sample at 3v and 4v
 static inline uint32_t vd_mv(uint32_t adc_3v, uint32_t adc_4v) {
@@ -73,28 +78,39 @@ static inline uint32_t voltage_mv(uint32_t adc) {
   return saved_state.vbg_mv * 1023 / adc + saved_state.vd_mv;
 }
 
-// Reads the ADC in quiet mode
-static inline uint32_t read_adc() {
-  return adc_quiet_read16_internal_ref(ADC_PRESCALER_128);
-}
-
 // returns 1 if the CAL pin is grounded
-static inline uint8_t cal_is_grounded() {
+static inline uint8_t cal_is_grounded(void) {
   return (PINB & (1 << CAL_PIN)) == 0;
 }
 
 // Read eeprom value to saved_state and return 1 if the contents are valid
-static uint8_t read_eeprom() {
+static uint8_t read_eeprom(void) {
   eeprom_read_block(
     &saved_state, &saved_state_eeprom, sizeof(struct SavedState));
   return saved_state.eyecatcher == EYECATCHER;
 }
 
 // Writes saved_state to eeprom.
-static void write_eeprom() {
+static void write_eeprom(void) {
   saved_state.eyecatcher = EYECATCHER;
   eeprom_write_block(
     &saved_state, &saved_state_eeprom, sizeof(struct SavedState));
+}
+
+// Acquires ADC samples and averages them (digital low pass filter)
+static void read_adc_sample(void) {
+  adc_sample_sum -= adc_sample[adc_sample_index];
+  adc_sample[adc_sample_index] = adc_quiet_read16_internal_ref(ADC_PRESCALER_128);
+  adc_sample_sum += adc_sample[adc_sample_index];
+  ++adc_sample_index;
+  if (adc_sample_index >= ADC_SAMPLES) {
+    adc_sample_index = 0;
+  }
+}
+
+// Returns the filtered adc value
+static inline uint32_t adc_current(void) {
+  return adc_sample_sum / ADC_SAMPLES;
 }
 
 // shows a calibration line
@@ -128,14 +144,14 @@ static void print_cal_values_to_oled(uint32_t adc) {
 }
 
 // Calibrates Vgs and Vb
-static void calibrate() {
+static void calibrate(void) {
   oledm_clear(&display, 0x00);
-  uint32_t adc_3v = read_adc();
+  uint32_t adc_3v = adc_current();
   uint32_t adc_4v = 0;
   uint8_t grounded = 1;
   while (1) {
-    _delay_ms(15);
-    const uint32_t adc = read_adc();
+    read_adc_sample();
+    const uint32_t adc = adc_current();
 
     if (adc_4v == 0) {
       if ((adc + MIN_ADC_CALIBRATION_SPAN) > adc_3v) {
@@ -157,7 +173,7 @@ static void calibrate() {
 }
 
 // One-time initilization that occurs when the chip is given power
-static void init() {
+static void init(void) {
   // settle time
   _delay_ms(50);
 
@@ -193,7 +209,7 @@ static void print_voltage_to_oled(uint32_t mv) {
 }
 
 // Outputs that the voltage is not known
-static void calibrate_message() {
+static void calibrate_message(void) {
   text.row = 1;
   text.column = 0;
   text_str(&text,
@@ -203,15 +219,16 @@ static void calibrate_message() {
 }
 
 // Called repeatedly by main
-static void loop() {
-  _delay_ms(15);
+static void loop(void) {
+  read_adc_sample();
   if (cal_is_grounded()) {
     calibrate();
   }
   if (saved_state.vd_mv != 0) {
-    print_voltage_to_oled(voltage_mv(read_adc()));
+    print_voltage_to_oled(voltage_mv(adc_current()));
   }
 }
+
 
 // Program entry point
 int main(void) {
