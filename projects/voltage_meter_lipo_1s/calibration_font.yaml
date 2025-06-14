@@ -11,4 +11,11 @@ sections:
     path: LiberationMono-Regular.ttf
     font_size: 16
     y_offset: -1
-    chars: "0123456789Vabcdgm |"
+    chars: "0123456789Vabcdgm Set3v.,thenpullCALtoGNDsavedtoeeprom"
+  - type: ttf
+    path: LiberationMono-Regular.ttf
+    font_size: 17
+    y_offset: -3
+    x_offset: -3
+    col_width: 6
+    chars: "|"
