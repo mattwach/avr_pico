@@ -10,17 +10,19 @@ sections:
   - type: ttf
     path: LiberationMono-Regular.ttf
     x_pad: 0
-    font_size: 64
+    font_size: 52
+    y_offset: 6
     chars: "0123456789"
   - type: ttf
     path: LiberationMono-Regular.ttf
     x_offset: -11
-    col_width: 18
-    font_size: 64
+    col_width: 11
+    font_size: 52
+    y_offset: 6
     chars: "."
   - type: ttf
     path: LiberationMono-Regular.ttf
     x_pad: 2
-    y_offset: 35
+    y_offset: 31
     font_size: 24
     chars: "v"
