@@ -145,11 +145,11 @@ static void print_cal_values_to_oled(uint32_t adc) {
 
 // Calibrates Vgs and Vb
 static void calibrate(void) {
+  text.font = calibration_font;
   oledm_clear(&display, 0x00);
   uint32_t adc_3v = adc_current();
   uint32_t adc_4v = 0;
   uint8_t grounded = 1;
-  _delay_ms(15);
   while (1) {
     read_adc_sample();
     const uint32_t adc = adc_current();
