@@ -38,27 +38,7 @@ uint16_t adc_quiet_read16(
 
 uint16_t adc_quiet_read16_internal_ref(
     uint8_t prescaler) {
-  ADCSRA = (1 << ADEN) | (1 << ADIF);  // Enable ADC, cancel any pending interrupt
-  ADCSRA |= prescaler;
-  ADMUX = ADC_REF_VCC | 0xC0;  // Use the internal 1.1V VREF
-
-  cli();
-  set_sleep_mode(SLEEP_MODE_ADC);
-  sleep_enable();
-
-  // start the conversion
-  ADCSRA |= (1 << ADIE);
-  _delay_ms(1);  // The datasheet calls for a 1ms settling time.
-  ADCSRA |= (1 << ADSC);
-  sei();
-  sleep_cpu();
-  sleep_disable();
-
-  // we should be awake due to ADC being done, but maybe it was some other
-  // source
-  while (ADCSRA & (1<<ADSC));
-
-  return ADC;
+  return adc_quiet_read16(ADC_REF_VCC, 0x0C, prescaler);
 }
 
 static uint8_t _entropy8(uint8_t bits, uint8_t rounds) {

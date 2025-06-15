@@ -106,6 +106,12 @@ static void render_char(
     struct Text*  text,
     const uint8_t height,
     const char c) {
+  if (c == '\n') {
+    text->column = 0;
+    text->row += height;
+    return;
+  }
+
   if (text->column >= text->display->memory_columns) {
     // off the right edge
     return;
