@@ -106,11 +106,9 @@ static void render_char(
     struct Text*  text,
     const uint8_t height,
     const char c) {
-  const struct VariableFont* font = (struct VariableFont*)text->font;
-
   if (c == '\n') {
     text->column = 0;
-    text->row += font->height;
+    text->row += height;
     return;
   }
 
@@ -118,6 +116,8 @@ static void render_char(
     // off the right edge
     return;
   }
+
+  const struct VariableFont* font = (struct VariableFont*)text->font;
 
   uint8_t width = 0;
   struct RLETracker rle_tracker;

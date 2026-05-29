@@ -24,7 +24,6 @@
 #include "calibration_font.h"
 #include "large_font.h"
 
-#include <lowpower/lowpower.h>
 #include <oledm/oledm.h>
 #include <oledm/text.h>
 #include <oledm/ssd1306_init.h>
@@ -50,7 +49,7 @@ struct SavedState {
   uint32_t eyecatcher;
 };
 
-#define EYECATCHER 0xA8500ADC
+#define EYECATCHER 0xA85ADC00
 
 // Global structures
 
@@ -58,6 +57,11 @@ struct OLEDM display;
 struct Text text;
 struct SavedState EEMEM saved_state_eeprom;  // EEPROM address
 struct SavedState saved_state;
+
+#define ADC_SAMPLES 8
+uint16_t adc_sample[ADC_SAMPLES];
+uint8_t adc_sample_index;
+uint32_t adc_sample_sum;
 
 // Calculates a voltage Drop (Vd) in mv, given an ADC sample at 3v and 4v
 static inline uint32_t vd_mv(uint32_t adc_3v, uint32_t adc_4v) {
@@ -74,34 +78,46 @@ static inline uint32_t voltage_mv(uint32_t adc) {
   return saved_state.vbg_mv * 1023 / adc + saved_state.vd_mv;
 }
 
-// Reads the ADC in quiet mode
-static inline uint32_t read_adc() {
-  return adc_quiet_read16_internal_ref(ADC_PRESCALER_128);
-}
-
 // returns 1 if the CAL pin is grounded
-static inline uint8_t cal_is_grounded() {
+static inline uint8_t cal_is_grounded(void) {
   return (PINB & (1 << CAL_PIN)) == 0;
 }
 
 // Read eeprom value to saved_state and return 1 if the contents are valid
-static uint8_t read_eeprom() {
+static uint8_t read_eeprom(void) {
   eeprom_read_block(
     &saved_state, &saved_state_eeprom, sizeof(struct SavedState));
   return saved_state.eyecatcher == EYECATCHER;
 }
 
 // Writes saved_state to eeprom.
-static void write_eeprom() {
+static void write_eeprom(void) {
   saved_state.eyecatcher = EYECATCHER;
   eeprom_write_block(
     &saved_state, &saved_state_eeprom, sizeof(struct SavedState));
+}
+
+// Acquires ADC samples and averages them (digital low pass filter)
+static void read_adc_sample(void) {
+  adc_sample_sum -= adc_sample[adc_sample_index];
+  adc_sample[adc_sample_index] = adc_quiet_read16_internal_ref(ADC_PRESCALER_128);
+  adc_sample_sum += adc_sample[adc_sample_index];
+  ++adc_sample_index;
+  if (adc_sample_index >= ADC_SAMPLES) {
+    adc_sample_index = 0;
+  }
+}
+
+// Returns the filtered adc value
+static inline uint32_t adc_current(void) {
+  return adc_sample_sum / ADC_SAMPLES;
 }
 
 // shows a calibration line
 static void show_calibration_line(const char* label, uint32_t val) {
   text_str(&text, label);
   text_char(&text, '|');
+  text_char(&text, ' ');
   text_char(&text, '0' + (char)((val / 1000) % 10));
   text_char(&text, '0' + (char)((val / 100) % 10));
   text_char(&text, '0' + (char)((val / 10) % 10));
@@ -128,14 +144,15 @@ static void print_cal_values_to_oled(uint32_t adc) {
 }
 
 // Calibrates Vgs and Vb
-static void calibrate() {
-  uint32_t adc_3v = read_adc();
+static void calibrate(void) {
+  text.font = calibration_font;
+  oledm_clear(&display, 0x00);
+  uint32_t adc_3v = adc_current();
   uint32_t adc_4v = 0;
   uint8_t grounded = 1;
-  oledm_clear(&display, 0x00);
   while (1) {
-    lowpower_powerDown(SLEEP_15MS, ADC_OFF, BOD_OFF);
-    const uint32_t adc = read_adc();
+    read_adc_sample();
+    const uint32_t adc = adc_current();
 
     if (adc_4v == 0) {
       if ((adc + MIN_ADC_CALIBRATION_SPAN) > adc_3v) {
@@ -149,7 +166,7 @@ static void calibrate() {
         write_eeprom();
         oledm_clear(&display, 0x00);
       }
-      print_adc_values_to_oled(adc_3v, adc_4v);
+      print_adc_values_to_oled(adc_3v, adc);
     } else {
       print_cal_values_to_oled(adc);
     }
@@ -157,9 +174,9 @@ static void calibrate() {
 }
 
 // One-time initilization that occurs when the chip is given power
-static void init() {
+static void init(void) {
   // settle time
-  lowpower_powerDown(SLEEP_60MS, ADC_OFF, BOD_OFF);
+  _delay_ms(50);
 
   // Set everything as an input to start
   DDRB = 0x00;
@@ -169,7 +186,7 @@ static void init() {
   DDRB |= (1 << SDA_PIN) | (1 << SCL_PIN);
 
   // Initialize the OLED
-  ssd1306_64x32_a_init(&display);
+  oledm_basic_init(&display);
   text_init(&text, large_font, &display);
   oledm_start(&display);
   oledm_clear(&display, 0x00);
@@ -193,25 +210,26 @@ static void print_voltage_to_oled(uint32_t mv) {
 }
 
 // Outputs that the voltage is not known
-static void calibrate_message() {
-  text.row = 2;
+static void calibrate_message(void) {
+  text.row = 1;
   text.column = 0;
   text_str(&text,
       "Set 3v, then\n"
-      "pull CAL\n"
-      "to GND");
+      "pull CAL to\n"
+      "GND.\n");
 }
 
 // Called repeatedly by main
-static void loop() {
-  lowpower_powerDown(SLEEP_15MS, ADC_OFF, BOD_OFF);
+static void loop(void) {
+  read_adc_sample();
   if (cal_is_grounded()) {
     calibrate();
   }
   if (saved_state.vd_mv != 0) {
-    print_voltage_to_oled(voltage_mv(read_adc()));
+    print_voltage_to_oled(voltage_mv(adc_current()));
   }
 }
+
 
 // Program entry point
 int main(void) {

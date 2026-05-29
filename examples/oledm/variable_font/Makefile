@@ -2,7 +2,7 @@
 MCU?=attiny85
 IFACE?=i2c
 OLED?=ssd1306
-F_CPU=1000000
+F_CPU=8000000
 
 ROOT=../../..
 include $(ROOT)/vars.mak

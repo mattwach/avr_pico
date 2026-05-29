@@ -5,6 +5,7 @@ MCU?=attiny85
 IFACE?=i2c
 #OLED?=sh1107
 OLED?=ssd1306
+F_CPU=8000000
 
 ROOT=../../..
 
