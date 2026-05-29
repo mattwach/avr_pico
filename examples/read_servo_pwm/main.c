@@ -2,6 +2,7 @@
 #include <oledm/oledm.h>
 #include <oledm/text.h>
 #include <oledm/ssd1306_init.h>
+#include <servo/read_servo_pwm.h>
 #include <util/delay.h>
 
 // Wiring
@@ -19,11 +20,13 @@ static void init() {
   text_init(&text_16x32, terminus16x32_numbers, &display);
   oledm_start(&display);
   oledm_clear(&display, 0x00);
+
+  read_servo_pwm_init(150);  
 }
 
 static void update_state() {
 	// just use a static number for the first pass
-	const uint16_t val = 1234;
+	const uint16_t val = read_servo_pwm();
 	text_16x32.row = 1;
 	text_16x32.column = 16; // center the output
 	text_char(&text_16x32, '0' + val / 10000);

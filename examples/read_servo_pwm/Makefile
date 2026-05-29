@@ -13,6 +13,7 @@ FILES := \
   $(ROOT_LIB)/oledm/fixed_text.o \
   $(ROOT_LIB)/oledm/oledm_$(IFACE).o \
   $(ROOT_LIB)/oledm/ssd1306_init.o \
+  $(ROOT_LIB)/servo/read_servo_pwm.o \
   $(ROOT_LIB)/twi/twi.o \
 
 include $(ROOT)/rules.mak
