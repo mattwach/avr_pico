@@ -4,6 +4,12 @@
 #include <oledm/ssd1306_init.h>
 #include <util/delay.h>
 
+// Wiring
+//
+// Atmega328P:
+//  A4 <- SDA
+//  A5 <- SCL
+
 struct OLEDM display;
 struct Text text_16x32;
 
