@@ -15,7 +15,6 @@ a.out: $(FILES)
 
 upload: a.hex
 		$(AVR_DUDE) \
-				-C$(AVR_DUDE_CONF) \
 				-v \
 				-p$(MCU) \
 				-c$(PROGRAMMER) \
