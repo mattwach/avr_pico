@@ -16,11 +16,5 @@ void read_servo_pwm_init(uint16_t signal_lost_ms);
 // not be called in a tight loop.
 uint16_t read_servo_pwm();
 
-// Provides access to the timer that is being use to track PWM
-// widths in case it might be useful for other purposes.
-//
-// Note that this function briefly disables interrupts, thus should
-// not be called in a tight loop.
-uint32_t read_servo_current_micros();
-
 #endif
+
